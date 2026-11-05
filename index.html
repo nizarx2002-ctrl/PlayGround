@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#090c16" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9C%A6%3C/text%3E%3C/svg%3E" />
+  <title>Bladebound — Neon Duel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Bladebound home"><span class="brand-mark">✦</span><span>BLADE<span class="brand-light">BOUND</span></span></a>
+      <div class="season"><span class="live-dot"></span> THE NEON DOJO <span class="season-divider">/</span> <span>SEASON 01</span></div>
+      <button class="sound-toggle" id="soundToggle" aria-label="Toggle sound"><span id="soundIcon">♫</span><span id="soundLabel">SOUND ON</span></button>
+    </header>
+
+    <section class="game-layout" aria-label="Sword fighting game">
+      <div class="game-column">
+        <div class="arena-frame">
+          <canvas id="game" width="1000" height="600" aria-label="Bladebound sword fighting arena"></canvas>
+          <div class="hud" id="hud">
+            <div class="hud-player">
+              <div class="avatar">K</div>
+              <div class="player-readout"><div class="name-line"><span class="player-name">KAI</span><span class="rank-pill">RONIN</span></div><div class="health-track"><div class="health-fill" id="healthFill"></div></div></div>
+              <span class="health-number" id="healthText">100</span>
+            </div>
+            <div class="wave-readout"><span class="wave-kicker">ROUND</span><strong id="waveText">01</strong><span class="wave-divider">·</span><span id="enemyCount">03</span><span class="enemy-caption">FOES</span></div>
+            <div class="score-readout"><span class="score-kicker">HIGH SCORE <b id="bestScore">00000</b></span><strong id="scoreText">00000</strong><span class="combo" id="comboText">—</span></div>
+          </div>
+          <div class="center-notice" id="centerNotice" aria-live="polite"></div>
+          <div class="overlay" id="startOverlay">
+            <div class="overlay-content">
+              <div class="eyebrow"><span></span> BECOME THE STORM <span></span></div>
+              <h1>OWN THE<br><em>ARENA.</em></h1>
+              <p>Steel sings. The crowd roars. Only one walks out.</p>
+              <button class="primary-button" id="startButton">ENTER THE DOJO <span>↗</span></button>
+              <div class="start-meta"><span>∞ ENDLESS ROUNDS</span><span>✦ &nbsp;NO MERCY</span></div>
+            </div>
+          </div>
+          <div class="overlay hidden" id="endOverlay">
+            <div class="overlay-content end-content">
+              <div class="eyebrow"><span></span> THE ARENA REMEMBERS <span></span></div>
+              <h2 id="endTitle">FALLEN,<br><em>NOT FORGOTTEN.</em></h2>
+              <p id="endCopy">You fought with honor.</p>
+              <div class="final-score">FINAL SCORE <strong id="finalScore">00000</strong></div>
+              <button class="primary-button" id="againButton">FIGHT AGAIN <span>↗</span></button>
+            </div>
+          </div>
+          <div class="pause-badge hidden" id="pauseBadge"><span>Ⅱ</span> PAUSED</div>
+          <button class="pause-button" id="pauseButton" aria-label="Pause game">Ⅱ</button>
+        </div>
+        <div class="below-arena">
+          <div class="arena-caption"><span class="caption-icon">✧</span><div><b>THE LAST STAND</b><span>Break their line. Keep your edge.</span></div></div>
+          <div class="tip"><span class="tip-star">✦</span> <span id="tipText">Perfect timing turns a parry into a counter.</span></div>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <div class="panel-top"><span>YOUR LOADOUT</span><span class="three-dots">•••</span></div>
+        <div class="weapon-card">
+          <div class="weapon-art"><div class="weapon-glow"></div><div class="katana"><i></i></div><span class="weapon-spark">✦</span></div>
+          <div class="weapon-info"><span class="weapon-type">LEGENDARY KATANA</span><h2>Moonpiercer</h2><p>Forged beneath a<br>blood-red moon.</p></div>
+          <div class="weapon-stats"><span><b>+28</b> DAMAGE</span><span><b>+15%</b> CRIT CHANCE</span><div class="stat-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="dim"></i></div></div>
+        </div>
+        <div class="controls-card"><div class="panel-top"><span>FIELD GUIDE</span><span class="guide-tag">QUICK TIP</span></div>
+          <div class="control-row"><div class="key-group"><kbd>W</kbd><div><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div></div><div><b>MOVE</b><span>Own your space</span></div></div>
+          <div class="control-row"><div class="key-single"><kbd>SPACE</kbd></div><div><b>SLASH</b><span>Strike nearby foes</span></div></div>
+          <div class="control-row"><div class="key-single"><kbd>SHIFT</kbd></div><div><b>QUICKSTEP</b><span>Dodge through danger</span></div></div>
+          <div class="control-row"><div class="key-single"><kbd>Q</kbd></div><div><b>WHIRLWIND</b><span>Unleash your focus</span></div></div>
+        </div>
+        <div class="focus-card"><div class="focus-icon">✺</div><div><span>FOCUS METER</span><p>Build your combo to charge a<br><b>devastating whirlwind.</b></p></div><div class="focus-meter"><i id="focusFill"></i></div></div>
+      </aside>
+    </section>
+    <footer><span>© 2026 BLADEBOUND ARENA</span><span>BUILT FOR GLORY <b>✦</b></span><span>PRESS <kbd>ESC</kbd> TO PAUSE</span></footer>
+  </main>
+  <div class="mobile-controls" id="mobileControls" aria-label="Touch controls">
+    <div class="dpad"><button data-key="up" aria-label="Move up">▲</button><div><button data-key="left" aria-label="Move left">◀</button><button data-key="down" aria-label="Move down">▼</button><button data-key="right" aria-label="Move right">▶</button></div></div>
+    <div class="action-pad"><button class="touch-dash" data-action="dash">DASH</button><button class="touch-slash" data-action="slash">SLASH</button><button class="touch-special" data-action="special">✦</button></div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
